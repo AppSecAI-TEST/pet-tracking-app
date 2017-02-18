@@ -9,26 +9,31 @@ import java.util.Locale.Builder;
  */
 public class Pet {
 	
+	private final int petId;
 	private final String petName;
 	private final String petNickName;
 	private final Date dateOfBirth;
 	private final Date dateOfAdoption;
 	private final Date dateOfDeath;
-	private final String classification;
-	private final String species;
-	private final String sex;	
+	private final String breed;	
+	private final String species;			//dog, cat, bird, etc.
+	private final Sex sex;	
 	
 	private Pet (Builder builder){
+		this.petId = builder.petId;
 		this.petName = builder.petName;
 		this.petNickName = builder.petNickName;
 		this.dateOfBirth = builder.dateOfBirth;
 		this.dateOfAdoption = builder.dateOfAdoption;
 		this.dateOfDeath = builder.dateOfDeath;
-		this.classification = builder.classification;
+		this.breed = builder.breed;
 		this.species = builder.species;
 		this.sex = builder.sex;		
 	}
-
+	
+	public int getPetId() {
+		return petId;
+	}
 	public String getPetName() {
 		return petName;
 	}
@@ -49,27 +54,33 @@ public class Pet {
 		return dateOfDeath;
 	}
 
-	public String getClassification() {
-		return classification;
+	public String getBreed() {
+		return breed;
 	}
 
 	public String getSpecies() {
 		return species;
 	}
 
-	public String getSex() {
+	public Sex getSex() {
 		return sex;
 	}
 	
-	public static class Builder{
+	public static class Builder {
+		private int petId;
 		private String petName;
 		private String petNickName;
 		private Date dateOfBirth;
 		private Date dateOfAdoption;
 		private Date dateOfDeath;
-		private String classification;
+		private String breed;
 		private String species;
-		private String sex;
+		private Sex sex;
+		
+		public Builder petId(int petId){
+			this.petId = petId;
+			return this;
+		}
 		
 		public Builder petName(String petName){
 			this.petName = petName;
@@ -81,7 +92,7 @@ public class Pet {
 			return this;
 		}
 		
-		public Builder dateofBirth(Date dateOfBirth){
+		public Builder dateOfBirth(Date dateOfBirth){
 			this.dateOfBirth = dateOfBirth;
 			return this;
 		}
@@ -96,8 +107,8 @@ public class Pet {
 			return this;
 		}
 		
-		public Builder classification(String classification){
-			this.classification = classification;
+		public Builder breed(String breed){
+			this.breed = breed;
 			return this;
 		}
 		
@@ -106,12 +117,15 @@ public class Pet {
 			return this;
 		}
 		
-		public Builder sex(String sex){
+		public Builder sex(Sex sex){
 			this.sex = sex;
 			return this;
 		}
 		
 		public Pet build(){
+			if(sex == null ){
+				throw new IllegalStateException("Sex is required.");
+			}
 			return new Pet(this);
 		}
 	}
