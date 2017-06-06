@@ -1,7 +1,9 @@
 package pet.tracking.app.model;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
@@ -18,6 +20,15 @@ public class PetTest {
 	@Test(expected = IllegalStateException.class)
 	public void testSexNotSet() {
 		new Pet.Builder().build();
+	}
+	
+	@Test
+	public void testGetPetId() {
+		Pet pet1 = new Pet.Builder().sex(Sex.FEMALE).petId(00001).build();
+		Assert.assertNull(pet1.getPetName());
+		
+		Pet pet2 = new Pet.Builder().sex(Sex.FEMALE).petName("George").build();
+		Assert.assertThat(pet2.getPetId(), CoreMatchers.is(00001));
 	}
 	
 	@Test
@@ -54,8 +65,11 @@ public class PetTest {
 		Pet pet = new Pet.Builder().sex(Sex.FEMALE).build();
 		Assert.assertNull(pet.getDateOfAdoption());
 		
-		Pet pet2 = new Pet.Builder().sex(Sex.FEMALE).petNickName("Georgy").build();
-		Assert.assertThat(pet2.getPetNickName(), CoreMatchers.is("Georgy"));
+
+		Calendar cal = Calendar.getInstance();
+		Date d = cal.getTime();
+		Pet pet2 = new Pet.Builder().sex(Sex.FEMALE).dateOfAdoption(d).build();
+		Assert.assertThat(pet2.getDateOfAdoption(), CoreMatchers.is(d));
 	}
 	
 	@Test
@@ -63,8 +77,10 @@ public class PetTest {
 		Pet pet = new Pet.Builder().sex(Sex.FEMALE).build();
 		Assert.assertNull(pet.getDateOfDeath());
 		
-		Pet pet2 = new Pet.Builder().sex(Sex.FEMALE).petNickName("Georgy").build();
-		Assert.assertThat(pet2.getPetNickName(), CoreMatchers.is("Georgy"));
+		Calendar cal = Calendar.getInstance();
+		Date d = cal.getTime();
+		Pet pet2 = new Pet.Builder().sex(Sex.FEMALE).dateOfDeath(d).build();
+		Assert.assertThat(pet2.getDateOfDeath(), CoreMatchers.is(d));
 	}
 	
 	@Test
@@ -72,8 +88,13 @@ public class PetTest {
 		Pet pet = new Pet.Builder().sex(Sex.FEMALE).build();
 		Assert.assertNull(pet.getBreed());
 		
-		Pet pet2 = new Pet.Builder().sex(Sex.FEMALE).petNickName("Georgy").build();
-		Assert.assertThat(pet2.getPetNickName(), CoreMatchers.is("Georgy"));
+		List<String> l = new ArrayList<String>();
+		l.add("Saint Bernard");
+		l.add("Golden Retreiver");
+		l.add("Chessapeake Bay Retreiver");
+		
+		Pet pet2 = new Pet.Builder().sex(Sex.FEMALE).petNickName("Georgy").breed(l).build();
+		Assert.assertEquals(pet2.getBreed(), CoreMatchers.is(l));
 	}
 	
 	@Test
@@ -81,7 +102,7 @@ public class PetTest {
 		Pet pet = new Pet.Builder().sex(Sex.FEMALE).build();
 		Assert.assertNull(pet.getSpecies());
 		
-		Pet pet2 = new Pet.Builder().sex(Sex.FEMALE).petNickName("Georgy").build();
-		Assert.assertThat(pet2.getPetNickName(), CoreMatchers.is("Georgy"));
+		Pet pet2 = new Pet.Builder().sex(Sex.FEMALE).petNickName("Georgy").species(Species.CAT).build();
+		Assert.assertThat(pet2.getSpecies(), CoreMatchers.is(Species.CAT));
 	}
 }
