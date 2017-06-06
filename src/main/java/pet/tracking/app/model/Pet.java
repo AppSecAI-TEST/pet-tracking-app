@@ -1,5 +1,6 @@
 package pet.tracking.app.model;
 
+import java.util.List;
 import java.util.Date;
 import java.util.Locale.Builder;
 
@@ -15,8 +16,8 @@ public class Pet {
 	private final Date dateOfBirth;
 	private final Date dateOfAdoption;
 	private final Date dateOfDeath;
-	private final String breed;	
-	private final String species;			//dog, cat, bird, etc.
+	private final List<String> breeds;	
+	private final Species species;			//dog, cat, bird, etc.
 	private final Sex sex;	
 	
 	private Pet (Builder builder){
@@ -26,7 +27,7 @@ public class Pet {
 		this.dateOfBirth = builder.dateOfBirth;
 		this.dateOfAdoption = builder.dateOfAdoption;
 		this.dateOfDeath = builder.dateOfDeath;
-		this.breed = builder.breed;
+		this.breeds = builder.breeds;
 		this.species = builder.species;
 		this.sex = builder.sex;		
 	}
@@ -54,11 +55,11 @@ public class Pet {
 		return dateOfDeath;
 	}
 
-	public String getBreed() {
-		return breed;
+	public List<String> getBreed() {
+		return breeds;
 	}
 
-	public String getSpecies() {
+	public Species getSpecies() {
 		return species;
 	}
 
@@ -73,8 +74,8 @@ public class Pet {
 		private Date dateOfBirth;
 		private Date dateOfAdoption;
 		private Date dateOfDeath;
-		private String breed;
-		private String species;
+		private List<String> breeds;
+		private Species species;
 		private Sex sex;
 		
 		public Builder petId(int petId){
@@ -107,12 +108,12 @@ public class Pet {
 			return this;
 		}
 		
-		public Builder breed(String breed){
-			this.breed = breed;
+		public Builder breed(List<String> breeds){
+			this.breeds = breeds;
 			return this;
 		}
 		
-		public Builder species(String species){
+		public Builder species(Species species){
 			this.species = species;
 			return this;
 		}
