@@ -27,7 +27,7 @@ public class PetTest {
 		Pet pet1 = new Pet.Builder().sex(Sex.FEMALE).petId(00001).build();
 		Assert.assertNull(pet1.getPetName());
 		
-		Pet pet2 = new Pet.Builder().sex(Sex.FEMALE).petName("George").build();
+		Pet pet2 = new Pet.Builder().sex(Sex.FEMALE).petId(0001).build();
 		Assert.assertThat(pet2.getPetId(), CoreMatchers.is(00001));
 	}
 	
@@ -93,8 +93,8 @@ public class PetTest {
 		l.add("Golden Retreiver");
 		l.add("Chessapeake Bay Retreiver");
 		
-		Pet pet2 = new Pet.Builder().sex(Sex.FEMALE).petNickName("Georgy").breed(l).build();
-		Assert.assertEquals(pet2.getBreed(), CoreMatchers.is(l));
+		Pet pet2 = new Pet.Builder().sex(Sex.FEMALE).breed(l).build();
+		Assert.assertThat(pet2.getBreed(), CoreMatchers.is(l));
 	}
 	
 	@Test
