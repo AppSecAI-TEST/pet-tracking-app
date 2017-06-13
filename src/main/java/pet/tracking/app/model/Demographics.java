@@ -101,6 +101,12 @@ public class Demographics {
 			this.dateOfBirth = dateOfBirth;
 			return this;
 		}
+		public Demographics build() {
+			if(sex == null){
+				throw new IllegalStateException("Sex is required.");
+			}
+			return null;
+		}
 	}
 	
 	
