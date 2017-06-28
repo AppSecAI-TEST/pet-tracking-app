@@ -105,7 +105,7 @@ public class Demographics {
 			if(sex == null){
 				throw new IllegalStateException("Sex is required.");
 			}
-			return null;
+			return new Demographics(this);
 		}
 	}
 	
