@@ -74,15 +74,15 @@ public class Address {
 			this.addressLine4 = addressLine4;
 			return this;
 		}
-		public Builder city(String addressLine4){
+		public Builder city(String city){
 			this.city = city;
 			return this;
 		}
-		public Builder state(String addressLine4){
+		public Builder state(String state){
 			this.state = state;
 			return this;
 		}
-		public Builder zipCode(String addressLine4){
+		public Builder zipCode(String zipCode){
 			this.zipCode = zipCode;
 			return this;
 		}

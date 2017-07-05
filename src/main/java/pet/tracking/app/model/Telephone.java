@@ -34,7 +34,7 @@ public class Telephone {
 	public int getCountryCode(){
 		return countryCode;
 	}
-	public TelephoneType telephoneType(){
+	public TelephoneType getTelephoneType(){
 		return telephoneType;
 	}
 	
@@ -69,6 +69,10 @@ public class Telephone {
 		public Builder telephoneType(TelephoneType telephoneType){
 			this.telephoneType = telephoneType;
 			return this;
+		}
+		public Telephone build() {
+			// TODO Auto-generated method stub
+			return new Telephone(this);
 		}
 	}
 
