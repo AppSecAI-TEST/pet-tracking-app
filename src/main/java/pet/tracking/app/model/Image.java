@@ -1,15 +1,16 @@
 package pet.tracking.app.model;
 
+import java.nio.file.Path;
 import java.util.Date;
 import java.util.Locale.Builder;
 
 public class Image {
 	
 	private final int imgId;
-	private final String imgPath;
+	private final Path imgPath;
 	private final String imgName;
 	private final Date dateOfImg;
-	private final String petId;
+	private final int petId;
 	
 	private Image (Builder builder){
 		this.imgId = builder.imgId;
@@ -23,7 +24,7 @@ public class Image {
 		return imgId;
 	}
 
-	public String getImgPath() {
+	public Path getImgPath() {
 		return imgPath;
 	}
 
@@ -35,24 +36,24 @@ public class Image {
 		return dateOfImg;
 	}
 	
-	public String getPetId() {
+	public int getPetId() {
 		return petId;
 	}
 	
 	public static class Builder{
 		
 		private int imgId;
-		private String imgPath;
+		private Path imgPath;
 		private String imgName;
 		private Date dateOfImg;
-		private String petId;
+		private int petId;
 		
 		public Builder imgId(int imgId){
 			this.imgId = imgId;
 			return this;
 		}
 		
-		public Builder imgPath(String imgPath){
+		public Builder imgPath(Path imgPath){
 			this.imgPath = imgPath;
 			return this;
 		}
@@ -67,7 +68,7 @@ public class Image {
 			return this;
 		}
 		
-		public Builder petId(String petId){
+		public Builder petId(int petId){
 			this.petId = petId;
 			return this;
 		}
